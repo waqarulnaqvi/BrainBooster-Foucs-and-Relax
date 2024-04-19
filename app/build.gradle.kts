@@ -60,6 +60,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.media3.exoplayer)
+//    implementation(libs.androidx.material3.android)
 //    implementation(libs.androidx.material3.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -71,6 +73,8 @@ dependencies {
     //Splash Api
     implementation (libs.androidx.core.splashscreen)
     implementation (libs.play.services.ads)
+    // media player
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.33.2-alpha")
 
 //    Google ads
 //    implementation 'com.google.android.gms:play-services-ads:23.0.0'

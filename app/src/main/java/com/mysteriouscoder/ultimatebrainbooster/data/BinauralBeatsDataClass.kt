@@ -10,6 +10,46 @@ data class BinauralBeatsDataClass(
 
 val binauralbeatslist = listOf(
     BinauralBeatsDataClass(
+        title = "Deep Concentration (Gamma)",
+        time = "10 min",
+        image = R.drawable.deepconcentrationgamma
+    ),
+    BinauralBeatsDataClass(
+        title = "Alertness & Energy (Beta)",
+        time = "10 min",
+        image = R.drawable.alertnessandenergybeta
+    ),
+
+    BinauralBeatsDataClass(
+        title = "Relaxed & Awake (Alpha)",
+        time = "10 min",
+        image = R.drawable.relaxedandawakealpha
+    ),
+
+    BinauralBeatsDataClass(
+        title = "Deep Relaxation (Theta)",
+        time = "10 min",
+        image = R.drawable.deeprelaxationtheta
+    ),
+
+    BinauralBeatsDataClass(
+        title = "Lucid Dreaming (Alpha & Theta)",
+        time = "10 min",
+        image = R.drawable.luciddreamingalphaandtheta
+    ),
+
+    BinauralBeatsDataClass(
+        title = "Astral Projection (Delta)",
+        time = "10 min",
+        image = R.drawable.astralprojectiondelta
+    ),
+
+    BinauralBeatsDataClass(
+        title = "Deep Sleep (Delta)",
+        time = "10 min",
+        image = R.drawable.deepsleepdelta
+    ),
+    BinauralBeatsDataClass(
         title = "Creativity Boost",
         time = "10 min",
         image = R.drawable.creativityboost
@@ -28,11 +68,6 @@ val binauralbeatslist = listOf(
         title = "Meditation Aid",
         time = "10 min",
         image = R.drawable.meditationaid
-    ),
-    BinauralBeatsDataClass(
-        title = "Improved Sleep",
-        time = "10 min",
-        image = R.drawable.improvedsleep
     ),
     BinauralBeatsDataClass(
         title = "Enhanced Focus",

@@ -2,4 +2,10 @@
 <resources>
 
     <style name="Theme.UltimateBrainBooster" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.MyApp" parent="Theme.Material.DayNight.NoActionBar">
+    </style>
+
+    <style name="Theme.Material.DayNight.NoActionBar" parent="@android:style/Theme.Material.Light.NoActionBar" />
+
 </resources>

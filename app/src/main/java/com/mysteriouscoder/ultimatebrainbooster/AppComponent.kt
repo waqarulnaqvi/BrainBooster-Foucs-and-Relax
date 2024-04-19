@@ -1,11 +1,13 @@
 package com.mysteriouscoder.ultimatebrainbooster
 
-import android.media.MediaPlayer
+
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,10 +44,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mysteriouscoder.ultimatebrainbooster.ui.theme.LightBlue
-import com.mysteriouscoder.ultimatebrainbooster.ui.theme.LightGray
-import com.mysteriouscoder.ultimatebrainbooster.ui.theme.LightGreen
-import com.mysteriouscoder.ultimatebrainbooster.ui.theme.LightOrange
+import androidx.navigation.NavHostController
+import com.mysteriouscoder.ultimatebrainbooster.ui.navigation.Navigationitems
 import com.mysteriouscoder.ultimatebrainbooster.ui.theme.LightPurple
 
 
@@ -54,8 +54,11 @@ fun OnImageCard(
 
     title: String = "3km Running",
     time: String = "10 min",
+//    navigationitems: Navigationitems = Navigationitems.MusicPlayerScreen,
     image: Int = R.drawable.relaxationandstressrelief,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    idx: Int = 0,
+    onClick: (idx: Int) -> Unit = {}
 ) {
 
     Card(
@@ -63,7 +66,10 @@ fun OnImageCard(
             .fillMaxWidth()
             .width(260.dp)
             .height(150.dp)
-            .padding(10.dp),
+            .padding(10.dp)
+            .clickable {
+                onClick(idx)
+            },
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(5.dp)
 
@@ -71,11 +77,9 @@ fun OnImageCard(
     )
     {
 
-        val context = LocalContext.current
-        Box(modifier = Modifier
-            .height(200.dp)
-            .clickable {
-            }
+        Box(
+            modifier = Modifier
+                .height(200.dp)
         ) {
             Image(
                 painter = painterResource(id = image),
@@ -118,8 +122,10 @@ fun OnImageCard(
                         text = title.uppercase(),
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 15.sp,
-                        color = Color.White,
+                        fontSize = 13.sp,
+//                        color = if (isSystemInDarkTheme()) Color.Black else Color.White,
+                        color =Color.White,
+//                        color =MaterialTheme.colorScheme.onSecondary,
                         fontFamily = FontFamily(Font(R.font.nunito_extrabold)),
                     )
                     Spacer(modifier = Modifier.weight(1f))
@@ -128,15 +134,13 @@ fun OnImageCard(
                     Text(
                         text = time,
                         fontSize = 12.sp,
-                        color = Color.White,
                         fontWeight = FontWeight.Bold,
+//                        color = if (isSystemInDarkTheme()) Color.Black else Color.White,
+                        color = Color.White,
                         fontFamily = FontFamily(Font(R.font.nunito_extrabold)),
                     )
 
                     Spacer(modifier = Modifier.width(20.dp))
-
-
-
                 }
             }
         }
@@ -149,24 +153,24 @@ fun Heading(
     title: String = "Binaural Beats FAQ",
     modifier: Modifier = Modifier
 ) {
-    Text(text = title,
+    Text(
+        text = title,
         fontFamily = FontFamily(Font(R.font.nunito_extrabold)),
-        fontSize=22.sp,
-        modifier = modifier.padding(start=20.dp)
+        fontSize = 22.sp,
+        modifier = modifier.padding(start = 20.dp)
     )
-    
-}
 
+}
 
 
 @Preview(showSystemUi = true)
 @Composable
 fun FAQComponent(
-     question: String = "What is Binaural Beats?",
+    question: String = "What is Binaural Beats?",
     answer: String = "Binaural beats are a form of soundwave therapy. The idea is that when exposed to two different frequencies at the same time through stereo headphones, the brain perceives a beat at the frequency equal to the difference between the two frequencies.",
-      color:Color= LightPurple,
-     modifier: Modifier= Modifier
-     ) {
+    color: Color = LightPurple,
+    modifier: Modifier = Modifier
+) {
 //    val taskColor= listOf(
 //        LightPurple,
 ////        LightBlue,
@@ -175,7 +179,9 @@ fun FAQComponent(
 //    ).random()
 
     Row(
-        modifier= modifier.fillMaxWidth().padding(start = 20.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(start = 20.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -189,7 +195,7 @@ fun FAQComponent(
                     .border(
                         border = BorderStroke(
                             3.dp,
-                            Color.Black
+                            MaterialTheme.colorScheme.onSurface
                         ),
                         shape = CircleShape
                     )
@@ -198,7 +204,8 @@ fun FAQComponent(
 
             Divider(
                 modifier = Modifier.width(6.dp),
-                color = Color.Black
+                color = MaterialTheme.colorScheme.onSurface
+
             )
 
 
@@ -210,7 +217,8 @@ fun FAQComponent(
                     modifier = Modifier
                         .clip(RoundedCornerShape(14.dp))
                         .background(color)
-                        .weight(0.9f),
+                        .weight(0.9f)
+                        .padding(end = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
 
                 ) {
@@ -221,8 +229,13 @@ fun FAQComponent(
                                 start = 12.dp
                             ),
                         text = "Q: $question",
-                        fontFamily = FontFamily(Font(R.font.nunito_bold))
+                        fontFamily = FontFamily(
+                            Font(R.font.nunito_bold)
+                        ),
+                        color = if(isSystemInDarkTheme()) Color.Black else Color.Black,
+//                            color=MaterialTheme.colorScheme.primary
                     )
+
 
 
                     Text(
@@ -234,7 +247,7 @@ fun FAQComponent(
                         text = "Ans: $answer",
                         fontFamily = FontFamily(Font(R.font.nunito_bold))
                     )
-                    Spacer(modifier =Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
 
 
@@ -242,11 +255,21 @@ fun FAQComponent(
                     modifier = Modifier
                         .width(6.dp)
                         .weight(0.1f),
-                    color = Color.Black
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
 
         }
 
-        }
     }
+}
+
+@Composable
+fun FinishActivity() {
+    val context = LocalContext.current
+    val activity = context as? ComponentActivity
+//    activity?.finishAffinity()
+    activity?.finish()
+
+
+}
