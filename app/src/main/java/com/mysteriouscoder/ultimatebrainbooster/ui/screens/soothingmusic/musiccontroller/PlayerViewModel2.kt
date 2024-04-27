@@ -3,8 +3,6 @@ package com.mysteriouscoder.ultimatebrainbooster.ui.screens.soothingmusic.musicc
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mysteriouscoder.ultimatebrainbooster.R
-import com.mysteriouscoder.ultimatebrainbooster.ui.screens.binauralbeats.musiccontroller.Music
-import com.mysteriouscoder.ultimatebrainbooster.ui.screens.binauralbeats.musiccontroller.MusicPlayerViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
