@@ -121,38 +121,38 @@ class MusicPlayerViewModel2(
                 cover = R.drawable.naturesoundssquareicon,
                 music = R.raw.naturesounds
             ),
-            Music2(
-                name = "Downtempo Music",
-                artist = "Brain Booster",
-                cover = R.drawable.downtempomusicsquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
+//            Music2(
+//                name = "Downtempo Music",
+//                artist = "Brain Booster",
+//                cover = R.drawable.downtempomusicsquareicon,
+//                music = R.raw.meditativeandhealingmusic
+//
+//            ),
             Music2(
                 name = "Chill-out Music",
                 artist = "Brain Booster",
                 cover = R.drawable.chilloutmusicsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.chilloutmusic
             ),
             Music2(
                 name = "Ambient Music",
                 artist = "Brain Booster",
                 cover = R.drawable.ambientmusicsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.ambientmusic
 
             ),
             Music2(
                 name = "New Age Music",
                 artist = "Brain Booster",
                 cover = R.drawable.newagemusicsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.newagemusic
 
             ),
-            Music2(
+           Music2(
                 name = "Instrumental Music",
                 artist = "Brain Booster",
                 cover = R.drawable.instrumentalmusicsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.instrumentalmusic
 
             ),
             Music2(
@@ -165,42 +165,42 @@ class MusicPlayerViewModel2(
                 name = "Minimalism Music",
                 artist = "Brain Booster",
                 cover = R.drawable.minimalismmusicsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.minimalismmusic
 
             ),
             Music2(
                 name = "Sound Baths",
                 artist = "Brain Booster",
                 cover = R.drawable.soundbathsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.soundbaths
 
             ),
             Music2(
                 name = "Jazz Music",
                 artist = "Brain Booster",
                 cover = R.drawable.jazzmusicsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.jazzmusic
 
             ),
             Music2(
                 name = "Spa Music",
                 artist = "Brain Booster",
                 cover = R.drawable.spamusicsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.spamusic
 
             ),
             Music2(
                 name = "LoFi Hip Hop Music ",
                 artist = "Brain Booster",
                 cover = R.drawable.lofihiphopsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.lofihiphopmusic
 
             ),
             Music2(
                 name = "Acoustic Music",
                 artist = "Brain Booster",
                 cover = R.drawable.acousticmusicsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.acouticmusic
 
             ),
             Music2(

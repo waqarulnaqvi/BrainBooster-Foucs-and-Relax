@@ -115,7 +115,7 @@ fun BottomNavigation(viewModel: CustomDialogViewModel) {
             TopAppBar(
                 title = {
                     Text(
-                        text = "\t\tBrainBooster",
+                        text = "\t\tBrain Booster",
                         color = Color.White,
                         fontFamily = FontFamily(Font(R.font.nunito_extrabold)),
 
@@ -151,6 +151,18 @@ fun BottomNavigation(viewModel: CustomDialogViewModel) {
                             text = { Text("mail") },
                             onClick = {
                                 launcher.launch(sendEmailIntent.value)
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("share") },
+                            onClick = {
+//                                val appPackageName = context.packageName
+                                val appPackageName = "com.igg.android.doomsdaylastsurvivors"
+                                try {
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
+                                } catch (e: android.content.ActivityNotFoundException) {
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
+                                }
                             }
                         )
                         DropdownMenuItem(
@@ -245,6 +257,16 @@ fun BottomNavigation(viewModel: CustomDialogViewModel) {
             composable(Navigationitems.FAQ.route) {
                 isSheetOpen = true
                 FAQ()
+//                {
+//                    navigationController.navigate(Navigationitems.BinauralBeats.route) {
+//                        popUpTo(Navigationitems.SoothingMusic.route) {
+//                            saveState = true
+//                            inclusive = true
+//                        }
+//                        launchSingleTop = true
+//                        restoreState = true
+//                    }
+//                }
 
             }
             composable(Navigationitems.BinauralBeats.route) {
@@ -254,12 +276,19 @@ fun BottomNavigation(viewModel: CustomDialogViewModel) {
                         Navigationitems.MusicPlayerWithIndex.route.replace(
                             "{idx}", idx.toString()
                         )
-                    ) {
+
+                    ){
                         popUpTo(Navigationitems.BinauralBeats.route) {
-                            saveState = true
+//                            saveState = true
+                            inclusive=true
                         }
-                        launchSingleTop = true
-                        restoreState = true
+                        popUpTo(Navigationitems.FAQ.route) {
+//                            saveState = true
+                            inclusive=true
+
+                        }
+//                        launchSingleTop = true
+//                        restoreState = true
                     }
                 }
             }
@@ -273,10 +302,17 @@ fun BottomNavigation(viewModel: CustomDialogViewModel) {
                         )
                     ) {
                         popUpTo(Navigationitems.SoothingMusic.route) {
-                            saveState = true
+//                            saveState = true
+                            inclusive=true
+
                         }
-                        launchSingleTop = true
-                        restoreState = true
+                        popUpTo(Navigationitems.FAQ.route) {
+//                            saveState = true
+                            inclusive=true
+
+                        }
+//                        launchSingleTop = true
+//                        restoreState = true
                     }
                 }
             }

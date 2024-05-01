@@ -18,7 +18,6 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -85,8 +84,7 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun SongScreen2(
-    state: PlayerState2,
-    onBackPress: () -> Unit
+    state: PlayerState2, onBackPress: () -> Unit
 ) {
     val packageName = LocalContext.current.packageName
     val context = LocalContext.current
@@ -138,8 +136,7 @@ fun SongScreen2(
     LaunchedEffect(player.currentMediaItemIndex) {
         playingSongIndex.intValue = player.currentMediaItemIndex
         pagerState.animateScrollToPage(
-            playingSongIndex.intValue,
-            animationSpec = tween(500)
+            playingSongIndex.intValue, animationSpec = tween(500)
         )
     }
 
@@ -156,12 +153,14 @@ fun SongScreen2(
     LaunchedEffect(player.duration) {
         if (player.duration > 0) {
             totalDuration.longValue = player.duration
-//            Log.d("TAG", "SongScreen2: $totalDuration = ${player.duration}")
+            remainTime.longValue = player.duration - player.currentPosition
         }
     }
     LaunchedEffect(key1 = totalDuration) {
         delay(1000)
-        remainTime.longValue = totalDuration.longValue - currentPosition.longValue
+        val duration = player.duration
+        val currPos = player.currentPosition
+        remainTime.longValue = duration - currPos
     }
 
 
@@ -179,11 +178,10 @@ fun SongScreen2(
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
+        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
     ) {
-        Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "BackPress",
+        Icon(imageVector = Icons.Filled.ArrowBack,
+            contentDescription = "BackPress",
             modifier = Modifier
                 .align(Alignment.TopStart)
                 .size(52.dp)
@@ -193,8 +191,7 @@ fun SongScreen2(
                         player.pause()
                     }
                     onBackPress()
-                }
-        )
+                })
 
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -208,7 +205,8 @@ fun SongScreen2(
                 (scaleIn() + fadeIn()) togetherWith (scaleOut() + fadeOut())
             }, label = "") {
                 Text(
-                    text = playList[it].name, fontSize = 24.sp,
+                    text = playList[it].name,
+                    fontSize = 24.sp,
                     color = MaterialTheme.colorScheme.primary,
                     style = TextStyle(fontWeight = FontWeight.ExtraBold)
                 )
@@ -239,7 +237,7 @@ fun SongScreen2(
             ) { page ->
 
                 val painter = painterResource(id = playList[page].cover)
-
+//                Spacer(modifier = Modifier.width(90.dp))
                 if (page == pagerState.currentPage) {
                     VinylAlbumCoverAnimation(isSongPlaying = isPlaying.value, painter = painter)
                 } else {
@@ -253,16 +251,12 @@ fun SongScreen2(
                     .padding(horizontal = 32.dp),
             ) {
 
-                TrackSlider(
-                    value = sliderPosition.longValue.toFloat(),
-                    onValueChange = {
-                        sliderPosition.longValue = it.toLong()
-                    },
-                    onValueChangeFinished = {
-                        currentPosition.longValue = sliderPosition.longValue
-                        player.seekTo(sliderPosition.longValue)
-                    },
-                    songDuration = totalDuration.longValue.toFloat()
+                TrackSlider(value = sliderPosition.longValue.toFloat(), onValueChange = {
+                    sliderPosition.longValue = it.toLong()
+                }, onValueChangeFinished = {
+                    currentPosition.longValue = sliderPosition.longValue
+                    player.seekTo(sliderPosition.longValue)
+                }, songDuration = totalDuration.longValue.toFloat()
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -280,8 +274,7 @@ fun SongScreen2(
 
                     Text(
                         text = if (remainTime.longValue >= 0) remainTime.longValue.convertToText() else "",
-                        modifier = Modifier
-                            .padding(8.dp),
+                        modifier = Modifier.padding(8.dp),
                         color = MaterialTheme.colorScheme.primary,
                         style = TextStyle(fontWeight = FontWeight.Bold)
                     )
@@ -296,24 +289,21 @@ fun SongScreen2(
                     player.seekToPreviousMediaItem()
                 })
                 Spacer(modifier = Modifier.width(20.dp))
-                ControlButton(
-                    icon = if (isPlaying.value) R.drawable.ic_pause else R.drawable.ic_play,
+                ControlButton(icon = if (isPlaying.value) R.drawable.ic_pause else R.drawable.ic_play,
                     size = 100.dp,
                     onClick = {
                         if (isPlaying.value) {
                             player.pause()
                         } else {
                             player.play()
+                            player.repeatMode = ExoPlayer.REPEAT_MODE_ONE
                         }
                         isPlaying.value = player.isPlaying
                     })
                 Spacer(modifier = Modifier.width(20.dp))
-                ControlButton(icon = R.drawable.ic_next,
-                    size = 40.dp,
-                    onClick = {
-                        player.seekToNextMediaItem()
-                    }
-                )
+                ControlButton(icon = R.drawable.ic_next, size = 40.dp, onClick = {
+                    player.seekToNextMediaItem()
+                })
             }
         }
 //        Spacer(modifier = Modifier.height(10.dp))
@@ -337,18 +327,14 @@ fun TrackSlider(
     onValueChangeFinished: () -> Unit,
     songDuration: Float,
 ) {
-    Slider(
-        value = value,
+    Slider(value = value,
         onValueChange = {
             onValueChange(it)
-        },
-        onValueChangeFinished = {
+        }, onValueChangeFinished = {
 
             onValueChangeFinished()
 
-        },
-        valueRange = 0f..songDuration,
-        colors = SliderDefaults.colors(
+        }, valueRange = 0f..songDuration, colors = SliderDefaults.colors(
             thumbColor = MaterialTheme.colorScheme.primary,
             activeTrackColor = Color.DarkGray,
             inactiveTrackColor = Color.Gray,
@@ -370,11 +356,9 @@ fun ControlButton(icon: Int, size: Dp, onClick: () -> Unit) {
             }, contentAlignment = Alignment.Center
     ) {
         Icon(
-            modifier = Modifier.size(size / 1.5f),
-            painter = painterResource(id = icon),
+            modifier = Modifier.size(size / 1.5f), painter = painterResource(id = icon),
 //            tint = if (isSystemInDarkTheme()) Color.White else Color.Black,
-            tint = MaterialTheme.colorScheme.onSurface,
-            contentDescription = null
+            tint = MaterialTheme.colorScheme.onSurface, contentDescription = null
         )
     }
 }
@@ -396,10 +380,8 @@ fun VinylAlbumCoverAnimation(
     LaunchedEffect(isSongPlaying) {
         if (isSongPlaying) {
             rotation.animateTo(
-                targetValue = currentRotation + 360f,
-                animationSpec = infiniteRepeatable(
-                    animation = tween(3000, easing = LinearEasing),
-                    repeatMode = RepeatMode.Restart
+                targetValue = currentRotation + 360f, animationSpec = infiniteRepeatable(
+                    animation = tween(3000, easing = LinearEasing), repeatMode = RepeatMode.Restart
                 )
             ) {
                 currentRotation = value
@@ -407,10 +389,8 @@ fun VinylAlbumCoverAnimation(
         } else {
             if (currentRotation > 0f) {
                 rotation.animateTo(
-                    targetValue = currentRotation + 50,
-                    animationSpec = tween(
-                        1250,
-                        easing = LinearOutSlowInEasing
+                    targetValue = currentRotation + 50, animationSpec = tween(
+                        1250, easing = LinearOutSlowInEasing
                     )
                 ) {
                     currentRotation = value
@@ -420,8 +400,7 @@ fun VinylAlbumCoverAnimation(
     }
 
     VinylAlbumCover(
-        painter = painter,
-        rotationDegrees = rotation.value
+        painter = painter, rotationDegrees = rotation.value
     )
 }
 
@@ -448,10 +427,7 @@ fun VinylAlbumCover(
             val p2 = Path().apply {
                 addOval(
                     Rect(
-                        thickness,
-                        thickness,
-                        size.width - thickness,
-                        size.height - thickness
+                        thickness, thickness, size.width - thickness, size.height - thickness
                     )
                 )
             }

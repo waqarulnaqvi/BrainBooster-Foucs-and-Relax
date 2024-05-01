@@ -1,6 +1,5 @@
 package com.mysteriouscoder.ultimatebrainbooster
 
-
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -27,25 +26,21 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import com.mysteriouscoder.ultimatebrainbooster.ui.navigation.Navigationitems
 import com.mysteriouscoder.ultimatebrainbooster.ui.theme.LightPurple
 
 
@@ -54,7 +49,6 @@ fun OnImageCard(
 
     title: String = "3km Running",
     time: String = "10 min",
-//    navigationitems: Navigationitems = Navigationitems.MusicPlayerScreen,
     image: Int = R.drawable.relaxationandstressrelief,
     modifier: Modifier = Modifier,
     idx: Int = 0,
@@ -62,18 +56,16 @@ fun OnImageCard(
 ) {
 
     Card(
+        shape = RoundedCornerShape(15.dp),
         modifier = modifier
             .fillMaxWidth()
-            .width(260.dp)
+//            .width(260.dp)
             .height(150.dp)
             .padding(10.dp)
             .clickable {
                 onClick(idx)
             },
-        shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(5.dp)
-
-
     )
     {
 
@@ -84,7 +76,8 @@ fun OnImageCard(
             Image(
                 painter = painterResource(id = image),
                 contentDescription = "",
-                modifier = modifier.size(400.dp),
+                modifier = modifier.fillMaxWidth(),
+//                modifier = modifier.size(400.dp),
                 contentScale = ContentScale.Crop,
             )
 
@@ -111,7 +104,8 @@ fun OnImageCard(
                         .fillMaxWidth()
                         .padding(start = 30.dp)
                         .padding(bottom = 10.dp)
-                        .width(220.dp),
+//                        .width(220.dp)
+                        ,
                     verticalAlignment = Alignment.Bottom,
                     horizontalArrangement = Arrangement.Center
 
@@ -151,19 +145,21 @@ fun OnImageCard(
 @Composable
 fun Heading(
     title: String = "Binaural Beats FAQ",
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    fontSize: Int = 22,
+    textAlign: TextAlign= TextAlign.Start
 ) {
     Text(
         text = title,
         fontFamily = FontFamily(Font(R.font.nunito_extrabold)),
-        fontSize = 22.sp,
-        modifier = modifier.padding(start = 20.dp)
+        fontSize = fontSize.sp,
+        modifier = modifier.padding(start = 20.dp),
+        textAlign = textAlign
     )
 
 }
 
 
-@Preview(showSystemUi = true)
 @Composable
 fun FAQComponent(
     question: String = "What is Binaural Beats?",
@@ -265,11 +261,10 @@ fun FAQComponent(
 }
 
 @Composable
-fun FinishActivity() {
+fun FinishAffinity() {
     val context = LocalContext.current
-    val activity = context as? ComponentActivity
-//    activity?.finishAffinity()
-    activity?.finish()
+    val activity = remember(context) { context as? ComponentActivity }
 
+    activity?.finishAffinity()
 
 }

@@ -106,24 +106,94 @@ class MusicPlayerViewModel(
         return listOf(
 
             Music(
+                name = "Deep Sleep",
+                artist = "Brain Booster",
+                cover = R.drawable.deepsleepdeltasquareicon,
+                music = R.raw.deepsleep
+
+            ),
+            Music(
+                name = "Creativity Boost",
+                artist = "Brain Booster",
+                cover = R.drawable.creativityboostsquareicon,
+                music = R.raw.creativityboost
+
+            ),
+            Music(
+                name = "Memory Boost",
+                artist = "Brain Booster",
+                cover = R.drawable.memoryboostsquareicon,
+                music = R.raw.memoryboost
+
+            ),
+            Music(
+                name = "Unlock Hidden Genius",
+                artist = "Brain Booster",
+                cover = R.drawable.unlockhiddengeniussquareicon,
+                music = R.raw.unlockhiddengenius
+
+            ),
+            Music(
+                name = "Nirvana Meditation Aid",
+                artist = "Brain Booster",
+                cover = R.drawable.nirvanameditationaidsquareicon,
+                music = R.raw.nirvanameditationaid
+
+            ),
+            Music(
+                name = "Enhanced Focus",
+                artist = "Brain Booster",
+                cover = R.drawable.enhancedfocussquareicon,
+                music = R.raw.enhancedfocus
+
+            ),
+            Music(
+                name = "Mood Enhancement",
+                artist = "Brain Booster",
+                cover = R.drawable.moodenhancementsquareicon,
+                music = R.raw.moodenhancement
+
+            ),
+         /*   Music(
+                name = "Open Your Third Eye",
+                artist = "Brain Booster",
+                cover = R.drawable.openyourthirdeyesquareicon,
+                music = R.raw.meditativeandhealingmusic
+
+            ),*/
+            Music(
+                name = "Relaxation & Stress Relief",
+                artist = "Brain Booster",
+                cover = R.drawable.relaxationandstressreliefsquareicon,
+                music = R.raw.relaxationandstressrelief
+
+            ),
+            Music(
+                name = "Improved Brain Sync",
+                artist = "Brain Booster",
+                cover = R.drawable.improvedbrainsyncsquareicon,
+                music = R.raw.improvedbrainsync
+
+            ),
+            Music(
                 name = "Deep Concentration (Gamma)",
                 artist = "Brain Booster",
                 cover = R.drawable.deepconcentrationgammasquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.deepconcentrationgamma
 
             ),
             Music(
                 name = "Alertness & Energy (Beta)",
                 artist = "Brain Booster",
                 cover = R.drawable.alertnessandenergybetasquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.alertnessandenergybeta
 
             ),
             Music(
                 name = "Relaxed & Awake (Alpha)",
                 artist = "Brain Booster",
                 cover = R.drawable.relaxedandawakealphasquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.relaxedandawakealpha
 
             ),
 
@@ -131,91 +201,21 @@ class MusicPlayerViewModel(
                 name = "Deep Relaxation (Theta)",
                 artist = "Brain Booster",
                 cover = R.drawable.deeprelaxationthetasquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.deeprelaxationtheta
 
             ),
             Music(
                 name = "Lucid Dreaming (Alpha & Theta)",
                 artist = "Brain Booster",
                 cover = R.drawable.luciddreamingalphaandthetasquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.luciddreamingalphaandtheta
 
             ),
             Music(
                 name = "Astral Projection (Delta)",
                 artist = "Brain Booster",
                 cover = R.drawable.astralprojectiondeltasquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
-            Music(
-                name = "Deep Sleep (Delta)",
-                artist = "Brain Booster",
-                cover = R.drawable.deepsleepdeltasquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
-            Music(
-                name = "Creativity Boost",
-                artist = "Brain Booster",
-                cover = R.drawable.creativityboostsquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
-            Music(
-                name = "Memory Boost",
-                artist = "Brain Booster",
-                cover = R.drawable.memoryboostsquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
-            Music(
-                name = "Unlock Hidden Genius",
-                artist = "Brain Booster",
-                cover = R.drawable.unlockhiddengeniussquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
-            Music(
-                name = "Meditation Aid",
-                artist = "Brain Booster",
-                cover = R.drawable.meditationaidsquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
-            Music(
-                name = "Enhanced Focus",
-                artist = "Brain Booster",
-                cover = R.drawable.enhancedfocussquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
-            Music(
-                name = "Mood Enhancement",
-                artist = "Brain Booster",
-                cover = R.drawable.moodenhancementsquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
-            Music(
-                name = "Open Your Third Eye",
-                artist = "Brain Booster",
-                cover = R.drawable.openyourthirdeyesquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
-            Music(
-                name = "Relaxation & Stress Relief",
-                artist = "Brain Booster",
-                cover = R.drawable.relaxationandstressreliefsquareicon,
-                music = R.raw.meditativeandhealingmusic
-
-            ),
-            Music(
-                name = "Improved Brain Sync",
-                artist = "Brain Booster",
-                cover = R.drawable.improvedbrainsyncsquareicon,
-                music = R.raw.meditativeandhealingmusic
+                music = R.raw.astralprojectiondelta
 
             ),
         )

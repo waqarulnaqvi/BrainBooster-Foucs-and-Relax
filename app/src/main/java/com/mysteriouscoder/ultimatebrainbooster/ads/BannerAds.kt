@@ -28,8 +28,5 @@ fun BannerAds(modifier:Modifier,adId:String="ca-app-pub-3940256099942544/6300978
                       loadAd(AdRequest.Builder().build())
                  }
             } )
-
     }
-
-    
 }

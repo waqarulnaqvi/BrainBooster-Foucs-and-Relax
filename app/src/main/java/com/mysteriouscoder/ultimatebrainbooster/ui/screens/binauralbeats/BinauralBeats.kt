@@ -1,5 +1,7 @@
 package com.mysteriouscoder.ultimatebrainbooster.ui.screens.binauralbeats
 
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
@@ -10,10 +12,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mysteriouscoder.ultimatebrainbooster.FinishAffinity
 import com.mysteriouscoder.ultimatebrainbooster.Heading
 import com.mysteriouscoder.ultimatebrainbooster.OnImageCard
 import com.mysteriouscoder.ultimatebrainbooster.ads.BannerAds
@@ -24,8 +29,10 @@ import com.mysteriouscoder.ultimatebrainbooster.ui.theme.GreyBg
 @Composable
 fun BinauralBeats(
     onCardSelect: (idx: Int) -> Unit,
+//    onBackPress: () -> Unit
 ) {
-
+    val context = LocalContext.current
+    val activity = remember(context) { context as? ComponentActivity }
     Box(modifier = Modifier.fillMaxSize())
     {
 
@@ -34,10 +41,8 @@ fun BinauralBeats(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .background(GreyBg)
-                .padding(start = 10.dp)
                 .fillMaxSize()
-//                .padding(top = 10.dp)
-//                .padding(bottom = 20.dp)
+                .padding(horizontal = 10.dp)
 
         )
         {
@@ -51,9 +56,6 @@ fun BinauralBeats(
                         .padding(top = 10.dp)
                 )
                 Spacer(modifier = Modifier.height(5.dp))
-//                BannerAds(modifier = Modifier.fillMaxSize())
-                Spacer(modifier = Modifier.height(5.dp))
-//                OnImageCard(navHostController=navHostController)
 
             }
 
@@ -82,13 +84,18 @@ fun BinauralBeats(
         )
 
     }
+    BackHandler(onBack = {
+        activity?.finishAffinity()
+    })
 
 }
 
 @Preview(showSystemUi = true)
 @Composable
 fun BinauralBeatsPreview() {
-    BinauralBeats(onCardSelect = {})
+    BinauralBeats(onCardSelect = {},
+//        onBackPress = {}
+    )
 
 
 }

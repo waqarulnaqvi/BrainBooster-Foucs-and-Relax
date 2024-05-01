@@ -18,6 +18,7 @@ import androidx.compose.animation.scaleOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 //import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -232,16 +233,25 @@ fun SongScreen(
             /***
              * Includes animated song album cover
              */
+            // phone page size = 1.7
+            // tablet page size = ?
+            val pageSize: Float = if (configuration.screenWidthDp > 600) {
+                1.2f
+            } else {
+                1.7f
+            }
             HorizontalPager(
                 modifier = Modifier.fillMaxWidth(),
                 state = pagerState,
-                pageSize = PageSize.Fixed((configuration.screenWidthDp / (1.7)).dp),
+                pageSize = PageSize.Fixed((configuration.screenWidthDp / (pageSize)).dp),
                 contentPadding = PaddingValues(horizontal = 85.dp)
             ) { page ->
 
                 val painter = painterResource(id = playList[page].cover)
-
+//                Spacer(modifier = Modifier.width(90.dp))
+//                Spacer(modifier = Modifier.weight(1f))
                 if (page == pagerState.currentPage) {
+
                     VinylAlbumCoverAnimation(isSongPlaying = isPlaying.value, painter = painter)
                 } else {
                     VinylAlbumCoverAnimation(isSongPlaying = false, painter = painter)
@@ -253,18 +263,21 @@ fun SongScreen(
                     .fillMaxWidth()
                     .padding(horizontal = 32.dp),
             ) {
+                Row {
 
-                TrackSlider(
-                    value = sliderPosition.longValue.toFloat(),
-                    onValueChange = {
-                        sliderPosition.longValue = it.toLong()
-                    },
-                    onValueChangeFinished = {
-                        currentPosition.longValue = sliderPosition.longValue
-                        player.seekTo(sliderPosition.longValue)
-                    },
-                    songDuration = totalDuration.longValue.toFloat()
-                )
+                    TrackSlider(
+                        value = sliderPosition.longValue.toFloat(),
+                        onValueChange = {
+                            sliderPosition.longValue = it.toLong()
+                        },
+                        onValueChangeFinished = {
+                            currentPosition.longValue = sliderPosition.longValue
+                            player.seekTo(sliderPosition.longValue)
+                        },
+                        songDuration = totalDuration.longValue.toFloat()
+                    )
+
+                }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                 ) {
@@ -406,6 +419,8 @@ fun VinylAlbumCoverAnimation(
                 currentRotation = value
             }
         } else {
+            // tablet
+            // phone
             if (currentRotation > 0f) {
                 rotation.animateTo(
                     targetValue = currentRotation + 50,

@@ -74,7 +74,7 @@ dependencies {
     implementation (libs.androidx.core.splashscreen)
     implementation (libs.play.services.ads)
     // media player
-    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.33.2-alpha")
+    implementation (libs.accompanist.systemuicontroller)
 
 //    Google ads
 //    implementation 'com.google.android.gms:play-services-ads:23.0.0'
