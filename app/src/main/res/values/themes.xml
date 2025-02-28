@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <style name="Theme.UltimateBrainBooster" parent="android:Theme.Material.Light.NoActionBar" />
 
     <style name="Theme.MyApp" parent="Theme.Material.DayNight.NoActionBar">
@@ -8,4 +9,53 @@
 
     <style name="Theme.Material.DayNight.NoActionBar" parent="@android:style/Theme.Material.Light.NoActionBar" />
 
+    <!-- Splash screen theme -->
+<!--    <style name="SplashTheme" parent="Theme.Material.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your splash screen background, icon, and duration &ndash;&gt;-->
+<!--        <item name="windowSplashScreenBackground">@color/white</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_brain_booster_icon</item>-->
+<!--        <item name="windowSplashScreenAnimationDuration">300</item>-->
+<!--        <item name="postSplashScreenTheme">@style/Theme.UltimateBrainBooster</item>-->
+<!--    </style>-->
+
+
+
+<!--    &lt;!&ndash; Translucent theme for splash screen &ndash;&gt;-->
+<!--    <style name="TranslucentSplashTheme" parent="Theme.Material.DayNight.NoActionBar">-->
+<!--        <item name="android:windowIsTranslucent">true</item>-->
+<!--    </style>-->
 </resources>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SplashApi" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">
+            #FFFF
+        </item>
+
+        <item name="windowSplashScreenAnimatedIcon">
+            @drawable/ic_appicon
+        </item>
+
+        <item name="postSplashScreenTheme">
+            @style/Theme.UltimateBrainBooster
+        </item>
+    </style>
+</resources>-->
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SplashApi" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#1C1E21</item>
+
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_appicon</item>
+
+        <item name="postSplashScreenTheme">
+            @style/Theme.UltimateBrainBooster
+        </item>
+    </style>
+
+</resources>-->

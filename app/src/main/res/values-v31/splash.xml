@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SplashApi" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">
+            #FFFF
+        </item>
+
+        <item name="windowSplashScreenAnimatedIcon">
+            @drawable/ic_app_icon
+        </item>
+
+<!--         Branding logo to show below the animated icon-->
+        <item name="android:windowSplashScreenBrandingImage">
+            @drawable/ic_mysteriouscoder_branding_logo
+        </item>
+
+
+        <item name="postSplashScreenTheme">
+            @style/Theme.UltimateBrainBooster
+        </item>
+    </style>
+</resources>

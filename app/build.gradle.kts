@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "com.mysteriouscoder.ultimatebrainbooster"
+    namespace = "com.mysteriouscoder.brainbooster"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mysteriouscoder.ultimatebrainbooster"
+        applicationId = "com.mysteriouscoder.brainbooster"
         minSdk = 21
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 19
+        versionName = "2.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -22,11 +22,22 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isShrinkResources = true
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // Add this block to ensure native debug symbols are generated
+            ndk {
+                debugSymbolLevel = "FULL" // Options: 'FULL', 'SYMBOL_TABLE', or 'NONE'
+            }
+        }
+        debug {
+            // Enable debug symbols in debug build type if needed
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
         }
     }
     compileOptions {
@@ -61,8 +72,6 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.media3.exoplayer)
-//    implementation(libs.androidx.material3.android)
-//    implementation(libs.androidx.material3.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -71,11 +80,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     //Splash Api
-    implementation (libs.androidx.core.splashscreen)
-    implementation (libs.play.services.ads)
-    // media player
-    implementation (libs.accompanist.systemuicontroller)
-
-//    Google ads
-//    implementation 'com.google.android.gms:play-services-ads:23.0.0'
+    implementation(libs.androidx.core.splashscreen)
+    //Google ads
+    implementation(libs.play.services.ads)
+    //Media player
+    implementation(libs.accompanist.systemuicontroller)
+    //GIf Dependency
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
+    implementation(libs.androidx.fragment.ktx)
 }
